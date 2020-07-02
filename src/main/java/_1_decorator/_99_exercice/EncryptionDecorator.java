@@ -5,7 +5,21 @@ import java.util.Base64;
 /**
  * Classe réalisatio du cryptage.
  */
-public class Encryptor {
+public class EncryptionDecorator extends DataSourceDecorator{
+
+    EncryptionDecorator(DataSource source) {
+        super(source);
+    }
+
+    @Override
+    public void writeData(String data) {
+        super.writeData(encode(data));
+    }
+
+    @Override
+    public String readData() {
+        return decode(super.readData());
+    }
 
     public String encode(String data) {
         byte[] result = data.getBytes();
