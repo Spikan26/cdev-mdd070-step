@@ -31,7 +31,22 @@ public class ArrayMaList implements MaList {
 
     @Override
     public void add(int position, String valeur) {
-        // TODO
+        String[] newArray = new String[this.size * 2];
+        int j = 0;
+        // copier array dans newArray
+        for (int i = 0; i < array.length; i++) {
+            if (i == position){
+                newArray[j] = valeur;
+                j++;
+                size++;
+            }
+
+            newArray[j] = array[i];
+            j++;
+        }
+
+        // on référence le nouveau tableau
+        this.array = newArray;
     }
 
     @Override
